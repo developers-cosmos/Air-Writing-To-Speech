@@ -19,8 +19,9 @@ kernel = np.ones((5,5),np.uint8)
 # Initializing the canvas on which we will draw
 canvas = None
 
-# Initilize x1,y1 points
-x1,y1=0,0
+# Initilize x1,y1,x2,y2 points
+x1, y1 = 0, 0
+x2, y2 = 0, 0
 
 # Threshold for noise
 noiseth = 800

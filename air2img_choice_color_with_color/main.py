@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 import time
-s=int(input("enter 1.Blue color, 2.red color, 3.green color, 4.yellow color"))
+s=int(input("Enter 1.Blue color, 2.red color, 3.green color, 4.yellow color\n"))
 a=[]
 b=[]
 while True:
@@ -42,8 +42,9 @@ kernel = np.ones((5,5),np.uint8)
 # Initializing the canvas on which we will draw
 canvas = None
 
-# Initilize x1,y1 points
-x1,y1=0,0
+# Initilize x1,y1,x2,y2 points
+x1, y1 = 0, 0
+x2, y2 = 0, 0
 
 # Threshold for noise
 noiseth = 800
