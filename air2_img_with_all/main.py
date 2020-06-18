@@ -3,9 +3,12 @@ from tkinter import *
 import cv2
 import numpy as np
 import time
-
+from datetime import datetime
 
 def drawing(s):
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    ind1=int(current_time[6:])
     if s==1:
         a=[100, 60, 60]
         b=[140, 255, 255]
@@ -44,16 +47,14 @@ def drawing(s):
 
     # Threshold for noise
     noiseth = 800
-    point = 0
-    point1=0
-    ind=0
 
     while(1):
+        
         _, frame = cap.read()
         frame = cv2.flip( frame, 1 )
         # Add the coloring options to the frame
         frame = cv2.rectangle(frame, (40,1), (160,65), (122,122,122), -1)
-        frame = cv2.rectangle(frame, (210,1), (295,65), colors[0], -1)
+        frame = cv2.rectangle(frame, (210,1), (295,65), (122,122,122), -1)
         frame = cv2.rectangle(frame, (315,1), (410,65), colors[1], -1)
         frame = cv2.rectangle(frame, (445,1), (545,65), colors[2], -1)
         frame = cv2.rectangle(frame, (585,1), (680,65), colors[3], -1)
@@ -101,11 +102,17 @@ def drawing(s):
                 elif 585 <= x2 <= 680:
                     colorIndex = 3 # Yellow
                 elif 730 <=x2<= 850:
-                    if(point1+10 < point):
-                        cv2.imwrite('images/result'+str(ind)+'.jpg',canvas)
-                        point1=point
-                    point=point+1
-                    canvas =np.zeros_like(frame)
+                    now = datetime.now()
+                    current_time = now.strftime("%H:%M:%S")
+                    ind=int(current_time[6:])
+                    if(ind> ind1):
+                        f='images/'+current_time[0:2]+current_time[3:5]+current_time[6:]+'.jpg'
+                        cv2.imwrite(f,canvas)
+                        canvas =np.zeros_like(frame)
+                        ind1=ind
+                    
+               
+                    
 
 
         
@@ -121,7 +128,7 @@ def drawing(s):
 
         else:
             # If there were no contours detected then make x1,y1 = 0
-            x1,y1 =x2,y2
+            x1,y1 =0,0
     
         # Merge the canvas and the frame.
         frame = cv2.add(frame,canvas)
@@ -137,9 +144,10 @@ def drawing(s):
         
         # When c is pressed store the current frame
         if k == ord('c'):
-            cv2.imwrite('images/result'+str(ind)+'.jpg',canvas)
+            f='images/'+current_time[0:2]+current_time[3:5]+current_time[6:]+'.jpg'
+            #print(f)
+            cv2.imwrite(f,canvas)
             canvas = None
-            ind += 1
 
     cv2.destroyAllWindows()
     cap.release()
