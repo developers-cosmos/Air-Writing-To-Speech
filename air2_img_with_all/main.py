@@ -136,7 +136,7 @@ def drawing(s):
     
         # Optionally stack both frames and show it.
         stacked = np.hstack((canvas,frame))
-        cv2.imshow('Track me if you can',cv2.resize(stacked,None,fx=0.6,fy=0.6))
+        cv2.imshow('Track Me If You Can!!',cv2.resize(stacked,None,fx=0.6,fy=0.6))
 
         k = cv2.waitKey(1) & 0xFF
         if k == 27:
@@ -162,7 +162,7 @@ def drawing4():
     drawing(4)
 window = Tk()
 window.title("Welcome to DC")
-window.geometry('1350x1350')
+window.geometry('1928x1080')
 lbl = Label(window, text="SELECT ANY BUTTON TO PICK COLOR",font=("Times New Roman",20,"bold"),pady=8, bd=6,justify=LEFT).pack()
 # create button
 lbl=Label(window,pady=80).pack()
