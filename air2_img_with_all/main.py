@@ -4,11 +4,10 @@ import cv2
 import numpy as np
 import time
 from datetime import datetime
+from playsound import playsound
 
 def drawing(s):
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    ind1=int(current_time[6:])
+    
     if s==1:
         a=[100, 60, 60]
         b=[140, 255, 255]
@@ -28,8 +27,8 @@ def drawing(s):
         b=[27,255,255]
         print("yellow")
 
-    colorIndex=1
-    colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255)]
+    colorIndex=s-1
+    colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255),(0,0,0)]
 
 
     cap = cv2.VideoCapture(0)
@@ -53,18 +52,20 @@ def drawing(s):
         _, frame = cap.read()
         frame = cv2.flip( frame, 1 )
         # Add the coloring options to the frame
-        frame = cv2.rectangle(frame, (40,1), (160,65), (122,122,122), -1)
-        frame = cv2.rectangle(frame, (210,1), (295,65), (122,122,122), -1)
-        frame = cv2.rectangle(frame, (315,1), (410,65), colors[1], -1)
-        frame = cv2.rectangle(frame, (445,1), (545,65), colors[2], -1)
-        frame = cv2.rectangle(frame, (585,1), (680,65), colors[3], -1)
-        frame = cv2.rectangle(frame, (720,1), (850,65), (122,122,122), -1)
-        cv2.putText(frame, "CLEAR ALL", (49, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, "BLUE", (225, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, "GREEN", (338, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, "RED", (450, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-        cv2.putText(frame, "YELLOW", (590, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (150,150,150), 2, cv2.LINE_AA)
-        cv2.putText(frame, "CAP & CLEAR", (730, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv2.LINE_AA) 
+        frame = cv2.rectangle(frame, (40,1), (180,55), (0,0,0), -1)
+        frame = cv2.rectangle(frame, (220,1), (360,55),(0,0,0) , -1)
+        frame = cv2.rectangle(frame, (400,1), (540,55), (0,0,0), -1)
+        frame = cv2.rectangle(frame, (580,1), (720,55), (0,0,0), -1)
+        frame = cv2.rectangle(frame, (760,1), (900,55),(0,0,0), -1)
+        frame = cv2.rectangle(frame, (940,1), (1080,55), (0,0,0), -1)
+        frame = cv2.rectangle(frame, (1120,1), (1260,55), (0,0,0), -1)
+        cv2.putText(frame, "YELLOW", (49, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, "BLUE", (240, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, "GREEN", (420, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, "RED", (600, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, "ERASER", (780, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv2.LINE_AA)
+        cv2.putText(frame, "CLEAR", (960, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv2.LINE_AA)
+        cv2.putText(frame, "CAPTURE", (1140, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv2.LINE_AA) 
         # Initialize the canvas as a black image of the same size as the frame.
         if canvas is None:
             canvas = np.zeros_like(frame)
@@ -91,31 +92,27 @@ def drawing(s):
             c = max(contours, key = cv2.contourArea)    
             x2,y2,w,h = cv2.boundingRect(c)
             if y2 <= 65:
-                if 40 <= x2 <= 150: # Clear All
-                    canvas =np.zeros_like(frame)
-                elif 200 <= x2 <= 285:
+                if 40 <= x2 <= 180: # yellow
+                    colorIndex=3
+                elif 220 <= x2 <= 360:
                     colorIndex = 0 # Blue
-                elif 315 <= x2 <= 410:
+                elif 400 <= x2 <= 540:
                     colorIndex = 1 # Green
-                elif 445 <= x2 <= 545:
+                elif 580 <= x2 <= 720:
                     colorIndex = 2 # Red
-                elif 585 <= x2 <= 680:
-                    colorIndex = 3 # Yellow
-                elif 730 <=x2<= 850:
+                elif 760 <= x2 <= 900: #eraser
+                    colorIndex=4
+                elif 940 <=x2<= 1080: #clear
+                    canvas =np.zeros_like(frame)
+                    
+                elif 1120 <= x2 <=1260: #capture
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
-                    ind=int(current_time[6:])
-                    if(ind> ind1):
-                        f='images/'+current_time[0:2]+current_time[3:5]+current_time[6:]+'.jpg'
-                        cv2.imwrite(f,canvas)
-                        canvas =np.zeros_like(frame)
-                        ind1=ind
-                    
-               
-                    
-
-
-        
+                    playsound('camera.mp3')
+                    f='images/'+current_time[0:2]+current_time[3:5]+current_time[6:]+'.jpg'
+                    cv2.imwrite(f,canvas)
+                   
+                                                            
             # If there were no previous points then save the detected x2,y2 as coordinates as x1,y1. 
             if x1 == 0 and y1 == 0:
                 x1,y1= x2,y2    
@@ -136,7 +133,7 @@ def drawing(s):
     
         # Optionally stack both frames and show it.
         stacked = np.hstack((canvas,frame))
-        cv2.imshow('Track Me If You Can!!',cv2.resize(stacked,None,fx=0.6,fy=0.6))
+        cv2.imshow('Track Me If You Can',cv2.resize(stacked,None,fx=0.6,fy=1.01))
 
         k = cv2.waitKey(1) & 0xFF
         if k == 27:
@@ -144,8 +141,11 @@ def drawing(s):
         
         # When c is pressed store the current frame
         if k == ord('c'):
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            playsound('camera.mp3')
             f='images/'+current_time[0:2]+current_time[3:5]+current_time[6:]+'.jpg'
-            #print(f)
+            print(f)
             cv2.imwrite(f,canvas)
             canvas = None
 
