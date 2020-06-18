@@ -91,6 +91,7 @@ def drawing(s):
                 
             c = max(contours, key = cv2.contourArea)    
             x2,y2,w,h = cv2.boundingRect(c)
+            cv2.circle(frame, (int(x2), int(y2)), int(8), (0, 255, 255), 2)
             if y2 <= 65:
                 if 40 <= x2 <= 180: # yellow
                     colorIndex=3
