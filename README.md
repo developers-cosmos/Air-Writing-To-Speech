@@ -14,4 +14,4 @@
 
 ## Model Overview
 
-![Model_Overview](https://github.com/developers-cosmos/Air-Writing-To-Speech/blob/feature_ocr/readme_data/nn_overview.png)
+![Model_Overview](https://github.com/developers-cosmos/Air-Writing-To-Speech/blob/feature_ocr/nn_overview.png)
