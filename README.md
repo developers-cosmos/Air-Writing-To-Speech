@@ -9,7 +9,27 @@
 ### Steps to download the IAM dataset :
 - Crash on the [IAM Dataset](http://www.fki.inf.unibe.ch/databases/iam-handwriting-database) page.
 - Please register yourself in their database in order to access the data.
-- Scroll down to the Download section where you'll find **access the IAM Handwriting DB 3.0**, follow that link. 
+- Scroll down to the Download section where you'll find **access the IAM Handwriting DB 3.0**, follow that link.
+- Download words.tgz
+- Download words.txt - This is available in data/ascii directory
+- Put the words.txt file in data dir
+- Create a directory **words** inside data directory and put the content of words.tgz into it.
+
+<pre>
+Check if dir structure looks like this:
+data
+--words.txt
+--words
+----a01
+------a01-000u
+--------a01-000u-00-00.png
+--------...
+------...
+----a02
+----...
+</pre>
+
+
 
 
 ## Model Overview
