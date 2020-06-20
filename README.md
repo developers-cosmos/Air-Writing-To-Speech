@@ -1,3 +1,5 @@
+![Python 3.7](https://img.shields.io/badge/Python-3.7-brightgreen.svg)![Tensorflow](https://aleen42.github.io/badges/src/tensorflow.svg)![stackoverflow](https://aleen42.github.io/badges/src/stackoverflow.svg)![Github](https://aleen42.github.io/badges/src/github.svg)
+
 # Air-Writing-To-Speech
 ## Optical Character Recognition of HandWritten Characters
 
