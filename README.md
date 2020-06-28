@@ -23,10 +23,10 @@ python "app.py"
 ## Notes on Air-Writing-speech
 
 * After installing dependencies and running the file you will get the image as
-* <img src="gallery/gui.png" height = "200px" width ="600px"/>
+ # <img src="gallery/gui.png" height = "200px" width ="600px"/>
 * Here we need to choose th color of object
 * This is the place where we work.
-* <img src="gallery/screen.png" height = "200px" width ="600px"/>
+ # <img src="gallery/screen.png" height = "200px" width ="600px"/>
 * If you want to save your you will drag the object towards capture.
 
 # Thank you :smile:
