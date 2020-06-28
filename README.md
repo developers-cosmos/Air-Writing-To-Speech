@@ -1,6 +1,6 @@
 # Air-Writing-To-Speech
 # <img src="gallery/gui.png" height = "200px" width ="600px"/>
-<b>Air-Writing-To-Speech</b> is an application that converts our air signs to text later to speech. Click [Air-Writing-To-Speech](https://bit.ly/COVID-RACE-GAME-download-version1)
+<b>Air-Writing-To-Speech</b> is an application that converts our air signs to text later to speech. Click [Air-Writing-To-Speech](https://bit.ly/38g5WxK)
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/developers-cosmos/Air-Writing-To-Speech/graphs/commit-activity) ![GitHub language count](http://img.shields.io/github/languages/count/developers-cosmos/Air-Writing-To-Speech) ![GitHub repo size](https://img.shields.io/github/repo-size/developers-cosmos/Air-Writing-To-Speech)
 
@@ -18,7 +18,7 @@ python "app.py"
 
 ## Downloads
 
-* To download the application without any setup [click here.](https://bit.ly/COVID-RACE-GAME-download-version1)
+* To download the application without any setup [click here.](https://bit.ly/38g5WxK)
 
 ## Notes on Air-Writing-speech
 
